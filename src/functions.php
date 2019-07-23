@@ -18,29 +18,27 @@ function task1($fileName)
 
     $output .= "Order: {$orderNumber} / {$orderDate}" . PHP_EOL . PHP_EOL;
 
-    foreach ($addressList as $address) {
-        $addressAttr = $address->attributes();
-
-        $output .= "Address data:" . PHP_EOL . PHP_EOL;
-        $output .= "Type: {$addressAttr['Type']}." . PHP_EOL;
-
-        foreach ($address as $addressKey => $addressVal) {
-            $output .= $addressKey . ': ' . $addressVal . '. ' . PHP_EOL;
-        }
-
-        $output .= PHP_EOL;
-    }
+    $output = outputData($addressList, $output);
 
     $output .= "Notes: {$orderNotes}" . PHP_EOL . PHP_EOL;
 
-    foreach ($orderList as $order) {
-        $orderAttr = $order->attributes();
+    $output = outputData($orderList, $output);
+
+    return $output;
+}
+
+function outputData($array, $output) {
+    foreach ($array as $item) {
+        $itemAttr = $item->attributes();
 
         $output .= "Product data:" . PHP_EOL . PHP_EOL;
-        $output .= "Part number: {$orderAttr['PartNumber']}." . PHP_EOL;
 
-        foreach ($order as $orderKey => $orderVal) {
-            $output .= "{$orderKey}: {$orderVal}." . PHP_EOL;
+        foreach ($itemAttr as $key => $val) {
+            $output .= "{$key}: {$val}." . PHP_EOL;
+        }
+
+        foreach ($item as $key => $val) {
+            $output .= "{$key}: {$val}." . PHP_EOL;
         }
 
         $output .= PHP_EOL;
