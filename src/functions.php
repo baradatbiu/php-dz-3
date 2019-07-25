@@ -2,7 +2,7 @@
 
 function task1($fileName)
 {
-    $data = file_get_contents(__DIR__ . '/' . $fileName);
+    $data = file_get_contents($fileName);
 
     $xml = new SimpleXMLIterator($data);
 
@@ -72,7 +72,7 @@ function task2($data)
         file_put_contents('output2.json', json_encode($output + $newCar));
         $output2 = json_decode(file_get_contents('output2.json'), true);
 
-        print_r(array_diff_assoc($output2, $output));
+        return array_diff_assoc($output2, $output);
     }
 }
 

@@ -17,7 +17,7 @@ $cars = [
     ],
 ];
 
-task2($cars);
+print_r(task2($cars));
 
 echo task3('nums-csv.csv') . PHP_EOL;
 
